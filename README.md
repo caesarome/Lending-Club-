@@ -1,26 +1,31 @@
 # LendingClub
 
-### 对Lending Club的借贷数据进行分析。
-#### 一.对Lending Club平台的数据可视化并进行探索性数据分析。
-1. 查看借贷人申请的贷款数额，对借贷人发放的贷款，每笔贷款中由投资者提供的借款数量的分布：可以发现该平台资金充沛，足以为征信条件符合规定的接贷人提供贷款。使用该平台的借贷人的借贷金额多分布在10000USD和20000USD之间。
-2. Lending Club平台的放贷金额随着平台发展逐年上涨。2015年所发放的贷款总数额最大。
-3. 将Loan_condition为"Charged Off", "Default", "Does not meet the credit policy. Status:Charged Off", "In Grace Period", "Late (16-30 days)", "Late (31-120 days)"视为不良贷款（Bad Loan）。
-在该平台所发放的贷款中，不良贷款占比7.6%（但是Good Loan中有很多贷款的状态为Current，这些贷款依然存在违约风险）。贷款业务自2012年起发展迅速，并且自2013年后平台的风险管理变得更加有效。
-4. 绘制美国各个地区从2007年6月至2015年12月的贷款总量的趋势图。发现西部，东北部和东南部地区贷款数量相当（经济活力较好）；西南部最低。
-5. 查看各个地区的贷款状态，由此对各地区发放贷款的风险有一个大概的认识：西部和东南部的违约率最高，东北部紧随其后。
-6. 对借贷人进行如下分类： 
-1）低收入人群：年收入<= 100,000 USD 
-2）中等收入人群：100,000 USD <= 年收入<= 200,000 USD 
-3）高收入人群：年收入 >= 200,000 USD
-观察得知高收入人群的贷款金额会高于中低收入人群，但是借贷利率相对较低。低收入人群的贷款变成坏账的可能性最大。中等和高收入人群的工龄要大于低收入人群。
-7. 借贷人的信用评级越低，借贷的金额越大，平台提供的借贷利率越高。违约的贷款的平均利率要高于优良贷款：资质好的借贷人获得的利率会更多，同时较高的利率会为资质较低的借贷人带来更大的压力，从而加大他们违约的概率。
-8. 在“居住情况”特征中，背有按揭贷款的借贷人借贷金额最大。
-9. 中西部和东南部地区不良贷款的数额最大。贷款利率较高的贷款(高于13.23%) 发展为不良贷款的概率最大。 贷款期限较长的贷款(60个月) 发展为不良贷款的概率最大。
-10.不同的贷款目的对违约率的影响较大，贷款目的为教育和小微创业的贷款有较高的违约风险。最常见的贷款原因是债务重组。而教育是在三类收入人群中都是最不常见的。
+### Analyze Lending Club loan data.
+#### 1. Perform data visualization and exploratory data analysis on the loan data from Lending Club company.
+1. The loans applied by potential borrowers, the amount issued to the borrowers and the amount funded by investors are similarly distributed, meaning that it is most likely that qualified borrowers are going to get the loan they had applied for. Most of the loans issued were in the range of 10,000 to 20,000 USD.
+2. Loans issues was increasing year by year as the Lending Club exploded, most loans were issued in the year of 2015.
+3. Define the loan whose loan_condition is 'Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off', 'In Grace Period', 'Late (16-30 days)' or 'Late (31-120 days)' as 'Bad Loan'.
+7.6% of total loans are bad loans but there are current loans which have the risk becoming bad loans. Loan business of Lending Club has been growing up rapidly since 2012 and the riskmanagement became omre effective after 2013.
+4. From the run chart of loans issued by region for the period from June, 2007 through December, 2015, we can find out that SouthEast , West and NorthEast regions had the highest amount lof loans issued.(Possible due to local economic.)
+5. The regions of the West and SouthEast had a higher percentage in most of the b "bad" loan statuses.The NorthEast region had a higher percentage in Grace Period and Does not meet Credit Policy loan status.
+6. Classify the borrowers by annual income as below: 
+Low income category: Borrowers that have an annual income lower or equal to 100,000 usd. 
+Medium income category: Borrowers that have an annual income higher than 100,000 usd but lower or equal to 200,000 usd. 
+High income category: Borrowers that have an annual income higher than 200,000 usd. 
+Borrowers having higher annual income took higher loan amounts than people with lower income and always had a average lower interest rate on their loans. 
+Loans that were borrowed by the Low income category had a slightly higher change of becoming a bad loan.
+Borrowers with High and Medium annual incomes had a longer employment length than people with lower incomes.
+7. The borrowers with lower credit score or applied for a larger amount of money would receive a higher interest rate. The average interest rate of bad loans was higher than the one of the good loan, borrowers with lower credit grade would receive a higher rate which put pressure on them in return and the default became more likely.
+8. Main factors that causes for a loan to be considered a "Bad Loan": low annual income, high debt to income, high interest rates, low grade
+9. Mortgage was the variable from the home ownership column that used the highest amount borrowed within loans that were considered to be bad.
+10. The Midwest and West regions had the most defaults.
+11. Loans that have a high interest rate(above 13.23%) are more likely to become a bad loan.
+Loans that have a longer maturity date (60 months) are more likely to be a bad loan.
+12. The reasons for clients to apply for a loan contribute to a "higher" risk. People that apply for educational and small business purposed tend to have a higher risk of being a bad loan. The reason that clients applied the most for a loan was to consolidate debt.Clients applied less for educational purposes for all three income categories.
 
-#### 二. 建立预测模型，根据已有贷款信息预测该笔贷款是否会发展为不良贷款。
+#### 2. Build a model to predict whether a loan will default.
 将Loan_condition为"Charged Off", "Default", "Does not meet the credit policy. Status:Charged Off", "In Grace Period", "Late (16-30 days)", "Late (31-120 days)"视为不良贷款（Bad Loan），状态为Fully Paid和 Current 的贷款视为优良贷款，建立Logistic Regression和XGBoost模型来判断贷款是否有逾期的风险。
 最终模型的准确率为0.92。
 
-#### 三.选取特征字段来监控贷款的状态——是否有违约风险。
-dti（贷款收入比），revol_util（客户当前借款余额占总授信额度的比例），annual_inc,(年收入) ， rov_bal（当前授信总额度），total_acc, mths_since_last_delinq（最新小贷首逾距今时间（月）），inq_last_6mths(最近6个月的查询次数)。
+#### 3. Select features for monitoring current loan status --- the risk of defaulting in the future.
+dti(debt to income), revol_util(The borrower’s revolving line utilization rate (the amount of the credit line used relative to total credit available).), annual_inc,(annual income) ， rov_bal(The borrower’s revolving balance (amount unpaid at the end of the credit card billing cycle).), total_acc(The total number of credit lines currently in the borrower's credit file), mths_since_last_delinq (The number of months since the borrower's last delinquency.), inq_last_6mths(The number of inquiries in past 6 months (excluding auto and mortgage inquiries)).
