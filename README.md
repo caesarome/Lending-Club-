@@ -24,8 +24,8 @@ Loans that have a longer maturity date (60 months) are more likely to be a bad l
 12. The reasons for clients to apply for a loan contribute to a "higher" risk. People that apply for educational and small business purposed tend to have a higher risk of being a bad loan. The reason that clients applied the most for a loan was to consolidate debt.Clients applied less for educational purposes for all three income categories.
 
 #### 2. Build a model to predict whether a loan will default.
-将Loan_condition为"Charged Off", "Default", "Does not meet the credit policy. Status:Charged Off", "In Grace Period", "Late (16-30 days)", "Late (31-120 days)"视为不良贷款（Bad Loan），状态为Fully Paid和 Current 的贷款视为优良贷款，建立Logistic Regression和XGBoost模型来判断贷款是否有逾期的风险。
-最终模型的准确率为0.92。
+Define the loan whose loan_condition is 'Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off', 'In Grace Period', 'Late (16-30 days)' or 'Late (31-120 days)' as 'Bad Loan', 'Fully Paid' and 'Current' as 'Good Loan'. Build  Logistic Regression and XGBoost model to predict whether a loan has the risk of default.
+Accuracy of the XGBoost model with the best performance is 0.92.
 
 #### 3. Select features for monitoring current loan status --- the risk of defaulting in the future.
 dti(debt to income), revol_util(The borrower’s revolving line utilization rate (the amount of the credit line used relative to total credit available).), annual_inc,(annual income) ， rov_bal(The borrower’s revolving balance (amount unpaid at the end of the credit card billing cycle).), total_acc(The total number of credit lines currently in the borrower's credit file), mths_since_last_delinq (The number of months since the borrower's last delinquency.), inq_last_6mths(The number of inquiries in past 6 months (excluding auto and mortgage inquiries)).
