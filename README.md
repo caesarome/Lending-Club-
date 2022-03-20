@@ -1,4 +1,4 @@
-# LendingClub
+# LendingClub Analytics
 
 ### Analyze Lending Club loan data.
 #### 1. Perform data visualization and exploratory data analysis on the loan data from Lending Club company.
